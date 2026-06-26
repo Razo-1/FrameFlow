@@ -1,24 +1,37 @@
 import { useEffect } from "react"
-import { API } from "../../../API"
 import { useDispatch, useSelector } from "react-redux"
-import { taskData } from '../../../Store/DataReducer/taskReducer.js'
-import Post from "../../organisms/Post/Post.jsx"
+import { userGet } from '../../../Store/DataReducer/DataReducer.js'
+import { MediaCard } from '../../organisms'
+import { MediaCardSkeleton } from '../../templates'
+import Pagination from '@mui/material/Pagination';
+import { taskPage } from '../../../Store/DataReducer/taskReducer';
+import { BasicSwitches } from '../../molecules'
+import './Lent.css'
+
 
 function Lent(){
 
     let dispatch = useDispatch()
-    let {data} = useSelector(state => state.userInfo)
+    let {data,isHeare,myPage} = useSelector(state => state.userInfo)
+    let {isDay} = useSelector(state => state.nightMode)
 
+    let totalPage = Math.ceil(data.totalCount / 100)
     useEffect(() => {
-        API.getData()
-        .then(res => dispatch(taskData(res)))
-    },[])
-    console.log(data);
-    let count = Array.from({length : 10}, (_,ind) => ind)
-    return(
-        <div>
-            {data ? data.map(el => <div key={el.id}><img src={el.photos.small} /><p>{el.name}</p></div>) : count.map(el => <div key={el}><Post loading={true}/></div> )}
-            
+        dispatch(userGet())
+    },[myPage])
+
+     return(
+        <div className={`lent ${isDay ? 'nightMode' : ''}`}>
+            <div className={`logo-menu ${isDay ? 'night' : ''}`}>
+                <h1 className="logo">
+                    <span>Frame</span>Flow
+                </h1>
+                <BasicSwitches/>
+            </div>
+            <div className="post">
+                {isHeare ? data.items.map(el => <div className="media" key={el.id}><MediaCard item={el}/></div>) : Array(10).fill(0).map((_,ind) => <MediaCardSkeleton key={ind}/>)}     
+            </div>
+                <Pagination sx={{margin : '50px 0 100px 0',"& .MuiPaginationItem-root": {color: isDay ? 'white' : '',},}} onChange={(_,p) => dispatch(taskPage(p))} count={totalPage} size="large" />
         </div>
     )
 }   

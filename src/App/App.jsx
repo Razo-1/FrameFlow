@@ -6,9 +6,11 @@ import './App.css'
 
 function App(){
     return(
-        <Provider store={Store}>
-            <RouterProvider router={Router}/>
-        </Provider>
+        <div >
+            <Provider store={Store}>
+                <RouterProvider router={Router}/>
+            </Provider>
+        </div>
     )
 }
 

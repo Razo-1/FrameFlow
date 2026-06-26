@@ -1,153 +1,97 @@
 import * as React from 'react';
-import { AppBar,Box,Toolbar,IconButton,Typography,Menu,Container,Avatar,Button,Tooltip,MenuItem } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import FolderIcon from '@mui/icons-material/Folder';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { NavLink } from 'react-router-dom';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import './Headers.css'
+import { useSelector } from 'react-redux';
+
+export default function Headers() {
+  const [value, setValue] = React.useState('recents');
+  let {isDay} = useSelector(state => state.nightMode)
 
 
-const pages = ['Lent', 'profile', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-function Headers () {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+     <div className='header'>
+        <BottomNavigation sx={{ width: 600,background : isDay ? 'rgb(0,0,0,0.3)' : 'rgb(255,255,255,0.3)',backdropFilter : 'blur(10px)'}}  value={value} onChange={handleChange}>
+          <BottomNavigationAction
+            component={NavLink}
+            to={`/`}
+            label="Recents"
+            value="recents"
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Frame Flow
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            "& .MuiSvgIcon-root": {
+              color: isDay ? "white" : undefined,
+            },
+            "&.Mui-selected .MuiSvgIcon-root": {
+              color: "primary.main",
+            },}}
+            icon={<RestoreIcon />}
+          />
+          <BottomNavigationAction
+            component={NavLink}
+            to={`/`}
+            label="Favorites"
+            value="favorites"
             sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Frame Flow
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <NavLink to={`/${page}`} key={page}>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
-                    >
-                    {page}
-                  </Button>
-              </NavLink>
-              
-            ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            "& .MuiSvgIcon-root": {
+              color: isDay ? "white" : undefined,
+            },
+            "&.Mui-selected .MuiSvgIcon-root": {
+              color: "primary.main",
+            },}}
+            icon={<FavoriteIcon />}
+          />
+          <BottomNavigationAction
+            component={NavLink}
+            to={`/`}
+            label="Nearby"
+            value="nearby"
+            sx={{
+            "& .MuiSvgIcon-root": {
+              color: isDay ? "white" : undefined,
+            },
+            "&.Mui-selected .MuiSvgIcon-root": {
+              color: "primary.main",
+            },}}
+            icon={<LocationOnIcon />}
+          />
+          <BottomNavigationAction
+            component={NavLink}
+            to={`/`}
+            label="Folder"
+            value="folder"
+            sx={{
+            "& .MuiSvgIcon-root": {
+              color: isDay ? "white" : undefined,
+            },
+            "&.Mui-selected .MuiSvgIcon-root": {
+              color: "primary.main",
+            },}}
+            icon={<FolderIcon />} />
+            <BottomNavigationAction
+            component={NavLink}
+            to={`/`}
+            label="Profile"
+            value="Profile"
+            sx={{
+            "& .MuiSvgIcon-root": {
+              color: isDay ? "white" : undefined,
+            },
+            "&.Mui-selected .MuiSvgIcon-root": {
+              color: "primary.main",
+            },}}
+            icon={<AccountCircleIcon />} />
+            
+        </BottomNavigation>
+     </div>
   );
 }
-
-export default Headers;

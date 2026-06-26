@@ -1,4 +1,4 @@
+import MediaCard from "./CardForPost/CardForPost";
 import { Layout } from "./Layout/Layout";
-import Post from "./Post/Post";
 
-export  { Layout,Post };
+export  { Layout,MediaCard };

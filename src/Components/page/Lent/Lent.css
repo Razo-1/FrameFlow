@@ -1,0 +1,94 @@
+.logo-menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  text-align: center;
+  background-color:rgba(255, 255, 255, 0.3);
+  backdrop-filter:blur(10px);
+  height:80px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding:0 30px;
+}
+.lent{
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+}
+.night{
+  background-color:rgba(0, 0, 0, 0.3)
+}
+.nightMode{
+  background-color:#3c3c3c;
+}
+.header{
+    z-index:999;
+}
+.post{
+    margin-top:150px;
+    display: flex;
+    flex-direction: column;
+    gap:50px;
+    align-items: center;
+    width:100%;
+}
+.media{
+
+}
+.logo {
+  font-size: 40px;
+  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px;
+
+  background: linear-gradient(
+    90deg,
+    #7c3aed,
+    #3b82f6,
+    #06b6d4,
+    #7c3aed
+  );
+  background-size: 300%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    gradientMove 5s linear infinite,
+    fadeIn 1s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 300%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

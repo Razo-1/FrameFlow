@@ -5,9 +5,9 @@ let base = create({
 })
 
 const API = {
-    async getData(){
-        const response = await base.get(`/users?count=10&page=10`)
-        return response.data.items
+    async getData(page){
+        const response = await base.get(`/users?count=10&page=${page}`)
+        return response.data
     }
 }
 
