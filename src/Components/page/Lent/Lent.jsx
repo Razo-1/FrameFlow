@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userGet } from '../../../Store/DataReducer/DataReducer.js'
-import { MediaCard } from '../../organisms'
+import { MediaCard, UpHeader } from '../../organisms'
 import { MediaCardSkeleton } from '../../templates'
 import Pagination from '@mui/material/Pagination';
 import { taskPage } from '../../../Store/DataReducer/taskReducer';
-import { BasicSwitches } from '../../molecules'
+
 import './Lent.css'
 
 
@@ -22,12 +22,7 @@ function Lent(){
 
      return(
         <div className={`lent ${isDay ? 'nightMode' : ''}`}>
-            <div className={`logo-menu ${isDay ? 'night' : ''}`}>
-                <h1 className="logo">
-                    <span>Frame</span>Flow
-                </h1>
-                <BasicSwitches/>
-            </div>
+            <UpHeader/>
             <div className="post">
                 {isHeare ? data.items.map(el => <div className="media" key={el.id}><MediaCard item={el}/></div>) : Array(10).fill(0).map((_,ind) => <MediaCardSkeleton key={ind}/>)}     
             </div>
