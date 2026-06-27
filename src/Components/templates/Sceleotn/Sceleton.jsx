@@ -26,8 +26,9 @@ export default function MediaCardSkeleton() {
 
         <Skeleton
           variant="rounded"
-          width={110}
+          width={130}
           height={36}
+          sx={{marginRight : 20}}
         />
       </CardActions>
     </Card>
