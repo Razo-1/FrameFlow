@@ -30,3 +30,8 @@
 .night {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
+.panel{
+  display: flex;
+  align-items:center;
+  gap:30px;
+}

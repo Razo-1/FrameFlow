@@ -7,10 +7,12 @@ import Pagination from '@mui/material/Pagination';
 import { taskPage } from '../../../Store/DataReducer/taskReducer';
 
 import './Lent.css'
+import { useSearchParams } from "react-router-dom"
 
 
 function Lent(){
 
+    const [searchParams, setSearchParams] = useSearchParams();
     let dispatch = useDispatch()
     let {data,isHeare,myPage} = useSelector(state => state.userInfo)
     let {isDay} = useSelector(state => state.nightMode)
@@ -18,8 +20,14 @@ function Lent(){
     let totalPage = Math.ceil(data.totalCount / 100)
     useEffect(() => {
         dispatch(userGet())
+        setSearchParams((searchParams) => {
+            searchParams.set("page", myPage.toString());
+            return searchParams;
+    });
     },[myPage])
+    
 
+   
      return(
         <div className={`lent ${isDay ? 'nightMode' : ''}`}>
             <UpHeader/>

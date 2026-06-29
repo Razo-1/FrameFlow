@@ -2,11 +2,13 @@ import { createStore,combineReducers, applyMiddleware } from "redux";
 import {  dataReducer } from './DataReducer/DataReducer.js';
 import { thunk } from "redux-thunk";
 import { dayReducer } from "./DayReducer/DayReducer.js";
+import { authReducer } from "./AuthReducer/authReducer.js";
 
 
 const rootReducer = combineReducers({
     userInfo : dataReducer,
-    nightMode : dayReducer
+    nightMode : dayReducer,
+    auth : authReducer
 })
 
 

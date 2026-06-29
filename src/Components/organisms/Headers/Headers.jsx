@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 export default function Headers() {
   const [value, setValue] = React.useState('recents');
   let {isDay} = useSelector(state => state.nightMode)
-
+  let {userId} = useSelector(state => state.auth)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -77,9 +77,9 @@ export default function Headers() {
               color: "primary.main",
             },}}
             icon={<FolderIcon />} />
-            <BottomNavigationAction
+            {userId ? '' : <BottomNavigationAction
             component={NavLink}
-            to={`/`}
+            to={`/sigup`}
             label="Profile"
             value="Profile"
             sx={{
@@ -89,7 +89,7 @@ export default function Headers() {
             "&.Mui-selected .MuiSvgIcon-root": {
               color: "primary.main",
             },}}
-            icon={<AccountCircleIcon />} />
+            icon={<AccountCircleIcon />} />}
             
         </BottomNavigation>
      </div>

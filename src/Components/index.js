@@ -1,4 +1,4 @@
 import { Layout } from "./organisms";
-import { Lent } from "./page";
+import { Lent,Profile } from "./page";
 
-export { Layout,Lent }
+export { Layout,Lent,Profile }

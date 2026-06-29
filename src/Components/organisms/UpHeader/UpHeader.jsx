@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { BasicSwitches } from "../../molecules";
-import "./UpHeader.css";
 import { useEffect, useState, useRef } from "react";
+import { BasicSwitches, LogOut } from "../../molecules";
+import "./UpHeader.css";
 
 function UpHeader() {
   let { isDay } = useSelector((state) => state.nightMode);
@@ -27,13 +27,14 @@ function UpHeader() {
   }, []);
 
   return (
-    <div
-      className={`${isDay ? "night" : ""} logo-menu ${show ? "show" : "hide"}`}
-    >
+    <div className={`${isDay ? "night" : ""} logo-menu ${show ? "show" : "hide"}`}>
       <h1 className="logo">
         <span>Frame</span>Flow
       </h1>
-      <BasicSwitches />
+      <div className="panel">
+        <BasicSwitches />
+        <LogOut/>
+      </div>
     </div>
   );
 }
