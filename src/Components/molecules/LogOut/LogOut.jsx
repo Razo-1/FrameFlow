@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authTask, leftTask } from '../../../Store/AuthReducer/authTask';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import './LogOut.css'
 
 function LogOut(){
-    let dispatch = useDispatch()
     let {userId,loginPage} = useSelector(state => state.auth)
+    let {isDay} = useSelector(state => state.nightMode)
+    let dispatch = useDispatch()
     let navigation = useNavigate()
     
     useEffect(() => {       
@@ -20,8 +21,8 @@ function LogOut(){
     }
 
     return(
-        <div onClick={changPage}>
-            <LogoutIcon/>
+        <div className='log-Out' onClick={changPage}>
+            <LogoutIcon sx={{color : isDay ? 'white' : ''}}/>
         </div>
     )
 }
