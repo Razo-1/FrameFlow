@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 export default function MediaCardSkeleton() {
 
       let {isDay} = useSelector(state => state.nightMode)
-
+      
   return (
     <Card sx={{ width : 345, background : isDay ? '#3c3c3c' : ''}}>
       <Skeleton variant="rectangular" height={140} />

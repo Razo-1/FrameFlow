@@ -1,10 +1,14 @@
 import { API } from "../../API"
-import { DATA_BASE,NEXT_PAGE,TEMP_DATA } from "./typeReducer"
+import { DATA_BASE,NEXT_PAGE,TEMP_DATA,SEARCH_USER } from "./typeReducer"
 import { taskData, taskTemp } from './taskReducer.js'
+import { thisElement } from '../../Utils'
+
 const defultState = {
     data : [],
     isHeare : false,
+    allData : [],
     myPage : 1,
+    srch : ''
 }
 
 const dataReducer = (state = defultState,action) => {
@@ -12,7 +16,8 @@ const dataReducer = (state = defultState,action) => {
         case DATA_BASE : 
         return {
             ...state,
-            data : action.payload
+            data : action.payload.items,
+            allData : action.payload.items
         }
         case TEMP_DATA : 
         return {
@@ -24,16 +29,22 @@ const dataReducer = (state = defultState,action) => {
             ...state,
             myPage : action.payload
         }
+        case SEARCH_USER:
+        return {
+            ...state,
+            allData: thisElement(state.allData, action.payload,state.data,state.srch),
+            srch : action.payload,
+        }
         default :
         return state
     }
 }
 
-export function userGet(){
+export function userGet(count){
     return (dispatch,getState) => {
         let { userInfo } = getState()
         dispatch(taskTemp(false))
-        API.getData(userInfo.myPage)
+        API.getData(count,userInfo.myPage)
         .then(res => {
             dispatch(taskTemp(true))
             dispatch(taskData(res))

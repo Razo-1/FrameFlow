@@ -1,10 +1,10 @@
-import { Formik } from "formik";
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../Store/AuthReducer/authReducer";
+import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import { login } from "../../../Store/AuthReducer/authReducer";
 import { leftTask } from "../../../Store/AuthReducer/authTask";
 
 
@@ -20,10 +20,11 @@ const schem = Yup.object({
 
 function Profile() {
 
-  let navigation = useNavigate()
   let {userId,loginPage} = useSelector(state => state.auth)
+  let {isDay} = useSelector(state => state.nightMode)
+  let navigation = useNavigate()
   let dispatch = useDispatch()
-  
+
   const signUp = ({email,password}) => {
     dispatch(login(email,password))
   };
@@ -53,6 +54,7 @@ function Profile() {
             justifyContent: "center",
             alignItems: "center",
             height: "100vh",
+            background : isDay ? '#3c3c3c' : ''
           }}
         >
           <Paper

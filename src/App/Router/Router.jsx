@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Layout, Lent, Profile } from "../../Components";
+import { Layout, Lent, Profile,Search } from "../../Components";
 
 
 const Router = createBrowserRouter([
@@ -14,6 +14,10 @@ const Router = createBrowserRouter([
             {
                 path : '/sigup',
                 element : <Profile /> 
+            },
+            {
+                path : '/search',
+                element : <Search />
             }
         ]
     }

@@ -5,8 +5,8 @@ let base = create({
 })
 
 const API = {
-    async getData(page){
-        const response = await base.get(`/users?count=10&page=${page}`)
+    async getData(count,page){
+        const response = await base.get(`/users?count=${count}&page=${page}`)
         return response.data
     },
     async postAuth(email,password){

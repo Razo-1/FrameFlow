@@ -1,14 +1,14 @@
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import FolderIcon from '@mui/icons-material/Folder';
 import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { NavLink } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchIcon from '@mui/icons-material/Search';
 import './Headers.css'
-import { useSelector } from 'react-redux';
 
 export default function Headers() {
   const [value, setValue] = React.useState('recents');
@@ -38,9 +38,9 @@ export default function Headers() {
           />
           <BottomNavigationAction
             component={NavLink}
-            to={`/`}
-            label="Favorites"
-            value="favorites"
+            to={`/search`}
+            label="Search"
+            value="search"
             sx={{
             "& .MuiSvgIcon-root": {
               color: isDay ? "white" : undefined,
@@ -48,7 +48,7 @@ export default function Headers() {
             "&.Mui-selected .MuiSvgIcon-root": {
               color: "primary.main",
             },}}
-            icon={<FavoriteIcon />}
+            icon={<SearchIcon />}
           />
           <BottomNavigationAction
             component={NavLink}
