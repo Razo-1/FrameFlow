@@ -19,9 +19,11 @@ function Search(){
 
     return(
         <div className={`${isDay ? 'ngt' : ''}`}>
-            <BasicTextFields />
-            <div className={`search ${isDay ? 'nightMode' : ''}`}>
-                {isHeare ? allData?.map(el => <div className="media" key={el.id}><MediaCard item={el}/></div>) : Array(10).fill(0).map((_,ind) => <MediaCardSkeleton key={ind}/>)}     
+            <div className={`${isDay ? 'ngt-2' : ''}`}>
+                <BasicTextFields />
+                <div className={`search ${isDay ? 'nightMode' : ''}`}>
+                    {isHeare ? allData?.map(el => <div className="media" key={el.id}><MediaCard item={el}/></div>) : Array(10).fill(0).map((_,ind) => <MediaCardSkeleton key={ind}/>)}     
+                </div>
             </div>
         </div>
     )
